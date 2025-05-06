@@ -41,17 +41,16 @@ final class Place: Identifiable {
 
 extension Place {
     static func from(feature: MKGeoJSONFeature) -> Place? {
-        guard let point = feature.geometry.first as? MKPointAnnotation else {
+        guard
+            let point = feature.geometry.first as? MKPointAnnotation ?? feature.geometry.first,
+            let propertiesData = feature.properties,
+            let properties = try? JSONSerialization.jsonObject(with: propertiesData) as? [String: Any]
+        else {
             return nil
         }
 
-        guard let propsData = feature.properties,
-              let json = try? JSONSerialization.jsonObject(with: propsData) as? [String: Any] else {
-            return nil
-        }
-
-        let name = json[Constants.strings.name] as? String ?? Constants.strings.unknown
-        let subtitle = json[Constants.strings.description] as? String
+        let name = properties["name"] as? String ?? "Unnamed"
+        let subtitle = properties["subtitle"] as? String
 
         return Place(
             name: name,
