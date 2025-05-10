@@ -10,9 +10,19 @@ import MapKit
 
 struct PlaceProperties: Decodable {
     let name: String?
-    let placeDescription: String?
+    let text: String?
     let address: String?
     let imageURL: String?
+    
+    var placeDescription: String? {
+        guard let cleaned = text?
+            .replacingOccurrences(of: "&nbsp;", with: " ")
+            .replacingOccurrences(of: "\n", with: " ")
+            .trimmingCharacters(in: .whitespacesAndNewlines),
+              !cleaned.isEmpty
+        else { return nil }
+        return cleaned
+    }
 }
 
 enum GeoJSONParser {
@@ -54,6 +64,9 @@ enum GeoJSONParser {
             place.latitude = coordinate.latitude
             place.longitude = coordinate.longitude
             place.imageURL = decodedProps?.imageURL
+            
+            print("✅ Created place: \(place.name) — desc: \(place.placeDescription ?? "[nil]")")
+            
 
             places.append(place)
         }
