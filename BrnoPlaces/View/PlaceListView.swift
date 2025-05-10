@@ -15,25 +15,38 @@ struct PlaceListView: View {
     var body: some View {
         List {
             Section {
-                ForEach(viewModel.places) { place in
+                ForEach(viewModel.filteredPlaces) { place in
                     VStack(alignment: .leading) {
-                        Text(place.name)
-                            .font(.headline)
-                        if let subtitle = place.subtitle {
-                            Text(subtitle)
-                                .font(.subheadline)
-                                .foregroundColor(.secondary)
+                            Text(place.name)
+                                .font(.headline)
+                            if let address = place.address {
+                                Text(address)
+                                    .font(.subheadline)
+                                    .foregroundColor(.secondary)
+                            }
                         }
-                    }
+                        .contentShape(Rectangle())
+                        .onTapGesture {
+                            viewModel.selectPlace(place)
+                        }
                 }
                 .onDelete { indexSet in
                     viewModel.deletePlace(at: indexSet, modelContext: modelContext)
                 }
             }
         }
+        .searchable(
+            text: $viewModel.searchText,
+            prompt: Constants.Strings.search
+        )
         .navigationTitle(Constants.Strings.listTitle)
         .onAppear {
             viewModel.loadPlaces(modelContext: modelContext)
+        }
+        .fullScreenCover(isPresented: $viewModel.isShowingDetail) {
+            if let place = viewModel.selectedPlace {
+                PlaceDetailView(place: place)
+            }
         }
     }
 }

@@ -18,28 +18,28 @@ struct PlaceMapView: View {
             UserAnnotation()
 
             ForEach(viewModel.places) { place in
-                Annotation(
-                    place.name,
-                    coordinate: CLLocationCoordinate2D(
-                        latitude: place.latitude,
-                        longitude: place.longitude
-                    )
-                ) {
-                    Image(systemName: Constants.Images.mapPin)
-                        .symbolRenderingMode(.multicolor)
-                        .imageScale(.large)
-                }
+                PlaceAnnotationView(
+                    place: place,
+                    action: {
+                        viewModel.selectedPlace = place
+                    }
+                )
             }
         }
         .mapControls {
             MapCompass()
             MapUserLocationButton()
         }
-        .navigationTitle(Constants.Strings.map)
-        .navigationBarTitleDisplayMode(.inline)
         .onAppear{
             viewModel.loadPlaces(modelContext: modelContext)
         }
+        .toolbar(.hidden, for: .navigationBar)
+        .navigationDestination(
+            item: $viewModel.selectedPlace,
+            destination: { place in
+                PlaceDetailView(place: place)
+            }
+        )
     }
 }
 

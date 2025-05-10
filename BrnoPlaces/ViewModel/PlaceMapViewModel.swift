@@ -50,7 +50,7 @@ final class PlaceMapViewModel: ObservableObject {
             var fetchedPlaces = try modelContext.fetch(FetchDescriptor<Place>())
 
             if fetchedPlaces.isEmpty {
-                let parsedPlaces = try GeoJSONParser.loadPlaces(from: "BrnoPlaces")
+                let parsedPlaces = try await GeoJSONParser.loadPlaces()
                 for place in parsedPlaces {
                     modelContext.insert(place)
                 }
