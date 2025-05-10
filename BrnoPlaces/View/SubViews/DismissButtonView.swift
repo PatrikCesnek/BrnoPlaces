@@ -9,23 +9,28 @@ import SwiftUI
 
 struct DismissButtonView: View {
     private let action : () -> Void
+    private let buttonColor: Color
     
-    init(action: @escaping () -> Void) {
+    init(
+        action: @escaping () -> Void,
+        buttonColor: Color = .red
+    ) {
         self.action = action
+        self.buttonColor = buttonColor
     }
     
     var body: some View {
         Button(
             action: action,
             label: {
-                Image(systemName: Constants.Images.backButton)
+                Image(systemName: Constants.Images.dismissButton)
                     .resizable()
-                    .foregroundStyle(.blue)
+                    .foregroundStyle(buttonColor)
                     .shadow(radius: 2)
-                    .frame(width: 20, height: 40)
+                    .frame(width: 30, height: 30)
                     .clipShape(Circle())
                     .overlay {
-                        Circle().stroke(.blue, lineWidth: 4)
+                        Circle().stroke(buttonColor, lineWidth: 4)
                             .frame(width: 50, height: 50)
                     }
                     .shadow(radius: 5)

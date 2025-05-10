@@ -9,14 +9,17 @@ import SwiftUI
 
 struct PlaceDetailInfoView: View {
     private let title: String
-    private let description: String?
+    private let text: String?
+    private let address: String?
     
     init(
         title: String,
-        description: String?
+        text: String?,
+        address: String?
     ) {
         self.title = title
-        self.description = description
+        self.text = text
+        self.address = address
     }
     
     var body: some View {
@@ -26,8 +29,14 @@ struct PlaceDetailInfoView: View {
                     .font(.title)
                     .fontWeight(.bold)
                 
-                if let description = description {
-                    Text(description)
+                if let address = address {
+                    Text(address)
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                }
+                
+                if let text = text, !text.isEmpty {
+                    Text(text)
                         .font(.caption)
                         .multilineTextAlignment(.leading)
                 }
@@ -41,6 +50,7 @@ struct PlaceDetailInfoView: View {
 #Preview {
     PlaceDetailInfoView(
         title: Mock.mockPlace.name,
-        description: Mock.mockPlace.subtitle
+        text: Mock.mockPlace.placeDescription,
+        address: Mock.mockPlace.address
     )
 }
