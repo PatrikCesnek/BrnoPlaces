@@ -64,9 +64,6 @@ enum GeoJSONParser {
             place.latitude = coordinate.latitude
             place.longitude = coordinate.longitude
             place.imageURL = decodedProps?.imageURL
-            
-            print("✅ Created place: \(place.name) — desc: \(place.placeDescription ?? "[nil]")")
-            
 
             places.append(place)
         }
