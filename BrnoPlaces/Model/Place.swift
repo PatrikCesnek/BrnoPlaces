@@ -13,25 +13,31 @@ import MapKit
 final class Place: Identifiable {
     @Attribute(.unique) var id: UUID
     var name: String
-    var subtitle: String?
+    var placeDescription: String?
+    var address: String?
     var latitude: Double
     var longitude: Double
     var createdAt: Date
+    var imageURL: String?
 
     init(
         id: UUID = UUID(),
-        name: String,
-        subtitle: String? = nil,
-        latitude: Double,
-        longitude: Double,
-        createdAt: Date = .now
+        name: String = "",
+        placeDescription: String? = nil,
+        address: String? = nil,
+        latitude: Double = 0,
+        longitude: Double = 0,
+        createdAt: Date = .now,
+        imageURL: String? = nil
     ) {
         self.id = id
         self.name = name
-        self.subtitle = subtitle
+        self.placeDescription = placeDescription
+        self.address = address
         self.latitude = latitude
         self.longitude = longitude
         self.createdAt = createdAt
+        self.imageURL = imageURL
     }
 
     var coordinate: CLLocationCoordinate2D {
@@ -42,21 +48,36 @@ final class Place: Identifiable {
 extension Place {
     static func from(feature: MKGeoJSONFeature) -> Place? {
         guard
-            let point = feature.geometry.first as? MKPointAnnotation ?? feature.geometry.first,
             let propertiesData = feature.properties,
             let properties = try? JSONSerialization.jsonObject(with: propertiesData) as? [String: Any]
         else {
             return nil
         }
 
+        guard
+            let latitude = properties["latitude"] as? Double,
+            let longitude = properties["longitude"] as? Double
+        else {
+            return nil
+        }
+        
+        guard let address = properties["address"] as? String else {
+            return nil
+        }
+
         let name = properties["name"] as? String ?? "Unnamed"
-        let subtitle = properties["subtitle"] as? String
+        
+        let description = properties["text"] as? String
+        let imageURL = properties["image"] as? String
 
         return Place(
+            id: UUID(),
             name: name,
-            subtitle: subtitle,
-            latitude: point.coordinate.latitude,
-            longitude: point.coordinate.longitude
+            placeDescription: description,
+            address: address,
+            latitude: latitude,
+            longitude: longitude,
+            imageURL: imageURL
         )
     }
 }
