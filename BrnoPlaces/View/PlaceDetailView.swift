@@ -55,6 +55,12 @@ struct PlaceDetailView: View {
             )
             .padding(16)
             
+            if let urlString = place.url, let url = URL(string: urlString) {
+                Link(Constants.Strings.moreInfo, destination: url)
+                    .font(.headline)
+                    .padding(8)
+            }
+            
             Spacer()
         }
         .navigationBarHidden(true)

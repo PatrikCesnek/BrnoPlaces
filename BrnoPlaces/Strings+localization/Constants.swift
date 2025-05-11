@@ -18,6 +18,7 @@ struct Constants {
         static let map = "Map"
         static let listTitle = "Places"
         static let search = "Search"
+        static let moreInfo = "More Info"
     }
     
     struct Images {

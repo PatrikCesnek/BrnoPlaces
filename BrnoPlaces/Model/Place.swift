@@ -19,6 +19,7 @@ final class Place: Identifiable {
     var longitude: Double
     var createdAt: Date
     var imageURL: String?
+    var url: String?
 
     init(
         id: UUID = UUID(),
@@ -28,7 +29,8 @@ final class Place: Identifiable {
         latitude: Double = 0,
         longitude: Double = 0,
         createdAt: Date = .now,
-        imageURL: String? = nil
+        imageURL: String? = nil,
+        url: String? = nil
     ) {
         self.id = id
         self.name = name
@@ -38,6 +40,7 @@ final class Place: Identifiable {
         self.longitude = longitude
         self.createdAt = createdAt
         self.imageURL = imageURL
+        self.url = url
     }
 
     var coordinate: CLLocationCoordinate2D {

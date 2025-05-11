@@ -13,6 +13,7 @@ struct PlaceProperties: Decodable {
     let text: String?
     let address: String?
     let imageURL: String?
+    let url: String?
     
     var placeDescription: String? {
         guard let cleaned = text?
@@ -64,6 +65,7 @@ enum GeoJSONParser {
             place.latitude = coordinate.latitude
             place.longitude = coordinate.longitude
             place.imageURL = decodedProps?.imageURL
+            place.url = decodedProps?.url
 
             places.append(place)
         }

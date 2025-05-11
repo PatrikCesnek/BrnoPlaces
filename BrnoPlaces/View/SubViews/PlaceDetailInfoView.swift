@@ -36,9 +36,11 @@ struct PlaceDetailInfoView: View {
                 }
                 
                 if let text = text, !text.isEmpty {
-                    Text(text)
-                        .font(.caption)
-                        .multilineTextAlignment(.leading)
+                    ScrollView {
+                        Text(text)
+                            .font(.caption)
+                            .multilineTextAlignment(.leading)
+                    }
                 }
             }
             
