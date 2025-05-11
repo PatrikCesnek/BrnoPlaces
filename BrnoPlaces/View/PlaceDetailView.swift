@@ -38,6 +38,16 @@ struct PlaceDetailView: View {
                 .padding(8)
             }
             
+            // Here I'm considering 2 options, hide the view if image is nil or use default empty image, as seen in this example, let me know which one you'd prefer :)
+            RemoteImageView(
+                imageURL: place.imageURL,
+                size: 250
+            )
+            .offset(y: -50)
+            .frame(width: 300, height: 100)
+            .shadow(radius: 8)
+            .padding(.bottom, 16)
+            
             PlaceDetailInfoView(
                 title: place.name,
                 text: place.placeDescription,
