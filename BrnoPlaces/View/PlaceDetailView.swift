@@ -41,10 +41,10 @@ struct PlaceDetailView: View {
             // Here I'm considering 2 options, hide the view if image is nil or use default empty image, as seen in this example, let me know which one you'd prefer :)
             RemoteImageView(
                 imageURL: place.imageURL,
-                size: 250
+                size: 200
             )
             .offset(y: -50)
-            .frame(width: 300, height: 100)
+            .frame(height: 40)
             .shadow(radius: 8)
             .padding(.bottom, 16)
             
@@ -56,11 +56,27 @@ struct PlaceDetailView: View {
             )
             .padding(16)
             
-            if let urlString = place.url, let url = URL(string: urlString) {
-                Link(Constants.Strings.moreInfo, destination: url)
-                    .font(.headline)
-                    .padding(8)
+            HStack {
+                if let urlString = place.url, let url = URL(string: urlString) {
+                    PrimaryLinkButtonView(
+                        title: Constants.Strings.moreInfo,
+                        url: url
+                    )
+                    
+                    Spacer()
+                }
+                
+                PrimaryButtonView(
+                    text: Constants.Strings.navigate,
+                    action: {
+                        HelperFunctions.navigateTo(
+                            destination: place.name,
+                            coordinate: place.coordinate
+                        )
+                    }
+                )
             }
+            .padding(.horizontal, 16)
             
             Spacer()
         }

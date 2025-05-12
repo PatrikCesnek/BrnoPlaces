@@ -17,6 +17,7 @@ struct Constants {
         static let search = "Search".localizedCapitalized
         static let moreInfo = "More Info".localizedCapitalized
         static let addedOn = "Added on ".localizedCapitalized
+        static let navigate = "Navigate".localizedCapitalized
     }
     
     struct Images {
