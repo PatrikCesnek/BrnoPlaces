@@ -80,10 +80,6 @@ struct PlaceDetailView: View {
             
             Spacer()
         }
-        .navigationBarHidden(true)
-        .navigationBarBackButtonHidden(true)
-        .toolbar(.hidden, for: .navigationBar)
-        
     }
 }
 
