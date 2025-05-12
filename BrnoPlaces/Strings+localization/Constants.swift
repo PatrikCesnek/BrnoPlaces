@@ -9,17 +9,14 @@ import Foundation
 
 struct Constants {
     struct Strings {
-        static let appName = "Brno Places"
-        static let name = "name"
-        static let unknown = "Unknown"
-        static let description = "description"
-        static let geoJSONExtension = "geojson"
-        static let list = "List"
-        static let map = "Map"
-        static let listTitle = "Places"
-        static let search = "Search"
-        static let moreInfo = "More Info"
-        static let addedOn = "Added on "
+        static let appName = "Brno Places".localizedCapitalized
+        static let unknown = "Unknown".localizedCapitalized
+        static let list = "List".localizedCapitalized
+        static let map = "Map".localizedCapitalized
+        static let listTitle = "Places".localizedCapitalized
+        static let search = "Search".localizedCapitalized
+        static let moreInfo = "More Info".localizedCapitalized
+        static let addedOn = "Added on ".localizedCapitalized
     }
     
     struct Images {
