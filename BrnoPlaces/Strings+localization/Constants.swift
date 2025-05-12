@@ -19,6 +19,7 @@ struct Constants {
         static let listTitle = "Places"
         static let search = "Search"
         static let moreInfo = "More Info"
+        static let addedOn = "Added on "
     }
     
     struct Images {

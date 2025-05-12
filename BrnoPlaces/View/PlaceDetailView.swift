@@ -51,7 +51,8 @@ struct PlaceDetailView: View {
             PlaceDetailInfoView(
                 title: place.name,
                 text: place.placeDescription,
-                address: place.address
+                address: place.address,
+                createdAt: place.createdAt
             )
             .padding(16)
             

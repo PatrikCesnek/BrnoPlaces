@@ -17,6 +17,7 @@ struct Mock {
         address: "MockAdress2025",
         latitude: mockLocation.latitude,
         longitude: mockLocation.longitude,
+        createdAt: Date(),
         imageURL: "",
         url: "https://www.apple.com"
     )
