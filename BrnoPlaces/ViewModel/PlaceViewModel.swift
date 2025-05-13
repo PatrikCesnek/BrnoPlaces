@@ -16,6 +16,7 @@ final class PlaceListViewModel: ObservableObject {
     @Published var searchText: String = ""
     @Published var isShowingDetail = false
     @Published var sortOption: SortOption = .closest
+    @Published var isShowingFavourites: Bool = false
     
     @Published var userLocation: CLLocationCoordinate2D?
     

@@ -11,7 +11,7 @@ import SwiftData
 
 struct PlaceMapView: View {
     @Environment(\.modelContext) private var modelContext
-    @StateObject private var viewModel = PlaceListViewModel()
+    @StateObject private var viewModel = PlaceMapViewModel()
 
     var body: some View {
         Map {
@@ -21,7 +21,9 @@ struct PlaceMapView: View {
                 PlaceAnnotationView(
                     place: place,
                     action: {
-                        viewModel.selectedPlace = place
+                        withAnimation {
+                            viewModel.selectPlace(place)
+                        }
                     }
                 )
             }
@@ -34,12 +36,11 @@ struct PlaceMapView: View {
             viewModel.loadPlaces(modelContext: modelContext)
         }
         .toolbar(.hidden, for: .navigationBar)
-        .navigationDestination(
-            item: $viewModel.selectedPlace,
-            destination: { place in
+        .fullScreenCover(isPresented: $viewModel.isShowingDetail) {
+            if let place = viewModel.selectedPlace {
                 PlaceDetailView(place: place)
             }
-        )
+        }
     }
 }
 

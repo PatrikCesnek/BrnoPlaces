@@ -30,5 +30,7 @@ struct Constants {
         static let backButton = "chevron.left"
         static let dismissButton = "xmark"
         static let emptyPhoto = "photo.circle.fill"
+        static let heart = "heart"
+        static let heartFill = "heart.fill"
     }
 }

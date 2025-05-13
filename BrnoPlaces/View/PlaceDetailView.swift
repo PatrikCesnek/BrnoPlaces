@@ -32,7 +32,11 @@ struct PlaceDetailView: View {
                 HStack {
                     Spacer()
                     
-                    DismissButtonView(action: { dismiss() })
+                    DismissButtonView(action: {
+                        withAnimation {
+                            dismiss()
+                        }
+                    })
                 }
                 .offset(y: -140)
                 .padding(8)

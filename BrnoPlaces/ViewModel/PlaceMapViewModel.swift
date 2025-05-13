@@ -13,6 +13,8 @@ import MapKit
 final class PlaceMapViewModel: ObservableObject {
     @Published var places: [Place] = []
     @Published var cameraPosition: MapCameraPosition = .automatic
+    @Published var isShowingDetail: Bool = false
+    @Published var selectedPlace: Place?
     
     private let locationManager = CLLocationManager()
 
@@ -21,6 +23,11 @@ final class PlaceMapViewModel: ObservableObject {
         Task {
             await loadPlacesAsync(modelContext: modelContext)
         }
+    }
+    
+    func selectPlace(_ place: Place) {
+        selectedPlace = place
+        isShowingDetail.toggle()
     }
 
     private func requestLocation() {

@@ -30,7 +30,9 @@ struct PlaceListView: View {
                         }
                         .contentShape(Rectangle())
                         .onTapGesture {
-                            viewModel.selectPlace(place)
+                            withAnimation {
+                                viewModel.selectPlace(place)
+                            }
                         }
                     }
                     .onDelete { indexSet in
@@ -51,6 +53,22 @@ struct PlaceListView: View {
                     PlaceDetailView(place: place)
                 }
             }
+        }
+        .toolbar{
+            Button(
+                action: {
+                    withAnimation {
+                        viewModel.isShowingFavourites.toggle()
+                    }
+                },
+                label: {
+                    Image(
+                        systemName: viewModel.isShowingFavourites
+                        ? Constants.Images.heartFill
+                        : Constants.Images.heart
+                    )
+                }
+            )
         }
     }
 }
