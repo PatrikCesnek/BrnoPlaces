@@ -18,6 +18,9 @@ struct Constants {
         static let moreInfo = "More Info".localizedCapitalized
         static let addedOn = "Added on ".localizedCapitalized
         static let navigate = "Navigate".localizedCapitalized
+        static let closest = "Closest".localizedCapitalized
+        static let aToZ = "A - Z".localizedUppercase
+        static let sort = "Sort".localizedCapitalized
     }
     
     struct Images {

@@ -13,10 +13,13 @@ struct PlaceListView: View {
     @StateObject private var viewModel = PlaceListViewModel()
 
     var body: some View {
-        List {
-            Section {
-                ForEach(viewModel.filteredPlaces) { place in
-                    VStack(alignment: .leading) {
+        VStack {
+            List {
+                Section(
+                    header: SortPickerView(sortOption: $viewModel.sortOption)
+                ) {
+                    ForEach(viewModel.filteredPlaces) { place in
+                        VStack(alignment: .leading) {
                             Text(place.name)
                                 .font(.headline)
                             if let address = place.address {
@@ -29,23 +32,24 @@ struct PlaceListView: View {
                         .onTapGesture {
                             viewModel.selectPlace(place)
                         }
-                }
-                .onDelete { indexSet in
-                    viewModel.deletePlace(at: indexSet, modelContext: modelContext)
+                    }
+                    .onDelete { indexSet in
+                        viewModel.deletePlace(at: indexSet, modelContext: modelContext)
+                    }
                 }
             }
-        }
-        .searchable(
-            text: $viewModel.searchText,
-            prompt: Constants.Strings.search
-        )
-        .navigationTitle(Constants.Strings.listTitle)
-        .onAppear {
-            viewModel.loadPlaces(modelContext: modelContext)
-        }
-        .fullScreenCover(isPresented: $viewModel.isShowingDetail) {
-            if let place = viewModel.selectedPlace {
-                PlaceDetailView(place: place)
+            .searchable(
+                text: $viewModel.searchText,
+                prompt: Constants.Strings.search
+            )
+            .navigationTitle(Constants.Strings.listTitle)
+            .onAppear {
+                viewModel.loadPlaces(modelContext: modelContext)
+            }
+            .fullScreenCover(isPresented: $viewModel.isShowingDetail) {
+                if let place = viewModel.selectedPlace {
+                    PlaceDetailView(place: place)
+                }
             }
         }
     }

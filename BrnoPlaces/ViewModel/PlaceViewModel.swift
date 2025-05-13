@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import MapKit
 import SwiftData
 
 @MainActor
@@ -14,11 +15,16 @@ final class PlaceListViewModel: ObservableObject {
     @Published var selectedPlace: Place?
     @Published var searchText: String = ""
     @Published var isShowingDetail = false
+    @Published var sortOption: SortOption = .closest
+    
+    @Published var userLocation: CLLocationCoordinate2D?
     
     var filteredPlaces: [Place] {
-        guard !searchText.isEmpty else { return places }
+        let base = sortedPlaces()
 
-        return places.filter { place in
+        guard !searchText.isEmpty else { return base }
+
+        return base.filter { place in
             place.name.localizedCaseInsensitiveContains(searchText) ||
             (place.address?.localizedCaseInsensitiveContains(searchText) ?? false) ||
             (place.placeDescription?.localizedCaseInsensitiveContains(searchText) ?? false)
@@ -67,6 +73,18 @@ final class PlaceListViewModel: ObservableObject {
     func selectPlace(_ place: Place) {
         selectedPlace = place
         isShowingDetail.toggle()
+    }
+    
+    private func sortedPlaces() -> [Place] {
+        switch sortOption {
+        case .alphabetical:
+            return places.sorted { $0.name < $1.name }
+        case .closest:
+            guard let location = userLocation else { return places }
+            return places.sorted {
+                $0.distance(to: location) < $1.distance(to: location)
+            }
+        }
     }
 }
 
