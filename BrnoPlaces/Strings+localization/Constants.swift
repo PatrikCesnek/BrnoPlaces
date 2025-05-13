@@ -21,6 +21,8 @@ struct Constants {
         static let closest = "Closest".localizedCapitalized
         static let aToZ = "A - Z".localizedUppercase
         static let sort = "Sort".localizedCapitalized
+        static let errorTitle = "Ooops, something went wrong...".localizedCapitalized
+        static let errorRetry = "Try Again".localizedCapitalized
     }
     
     struct Images {
@@ -32,5 +34,6 @@ struct Constants {
         static let emptyPhoto = "photo.circle.fill"
         static let heart = "heart"
         static let heartFill = "heart.fill"
+        static let gearXmark = "gear.badge.xmark"
     }
 }

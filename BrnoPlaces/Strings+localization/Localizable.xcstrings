@@ -1,6 +1,10 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "A - Z" : {
+      "extractionState" : "manual",
+      "shouldTranslate" : false
+    },
     "Added on " : {
       "extractionState" : "manual",
       "localizations" : {
@@ -34,6 +38,9 @@
           }
         }
       }
+    },
+    "Closest" : {
+      "extractionState" : "manual"
     },
     "List" : {
       "extractionState" : "manual",
@@ -86,6 +93,12 @@
         }
       }
     },
+    "Navigate" : {
+      "extractionState" : "manual"
+    },
+    "Ooops, something went wrong..." : {
+      "extractionState" : "manual"
+    },
     "Places" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -119,6 +132,9 @@
           }
         }
       }
+    },
+    "Sort" : {
+      "extractionState" : "manual"
     },
     "Unknown" : {
       "extractionState" : "manual",

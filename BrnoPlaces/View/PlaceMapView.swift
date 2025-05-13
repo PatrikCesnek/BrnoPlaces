@@ -14,31 +14,40 @@ struct PlaceMapView: View {
     @StateObject private var viewModel = PlaceMapViewModel()
 
     var body: some View {
-        Map {
-            UserAnnotation()
+        if let error = viewModel.error {
+            ErrorView(
+                errorString: error,
+                retryAction: {
+                    viewModel.loadPlaces(modelContext: modelContext)
+                }
+            )
+        } else {
+            Map {
+                UserAnnotation()
 
-            ForEach(viewModel.places) { place in
-                PlaceAnnotationView(
-                    place: place,
-                    action: {
-                        withAnimation {
-                            viewModel.selectPlace(place)
+                ForEach(viewModel.places) { place in
+                    PlaceAnnotationView(
+                        place: place,
+                        action: {
+                            withAnimation {
+                                viewModel.selectPlace(place)
+                            }
                         }
-                    }
-                )
+                    )
+                }
             }
-        }
-        .mapControls {
-            MapCompass()
-            MapUserLocationButton()
-        }
-        .onAppear{
-            viewModel.loadPlaces(modelContext: modelContext)
-        }
-        .toolbar(.hidden, for: .navigationBar)
-        .fullScreenCover(isPresented: $viewModel.isShowingDetail) {
-            if let place = viewModel.selectedPlace {
-                PlaceDetailView(place: place)
+            .mapControls {
+                MapCompass()
+                MapUserLocationButton()
+            }
+            .onAppear{
+                viewModel.loadPlaces(modelContext: modelContext)
+            }
+            .toolbar(.hidden, for: .navigationBar)
+            .fullScreenCover(isPresented: $viewModel.isShowingDetail) {
+                if let place = viewModel.selectedPlace {
+                    PlaceDetailView(place: place)
+                }
             }
         }
     }

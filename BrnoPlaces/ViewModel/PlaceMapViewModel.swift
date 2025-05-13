@@ -15,6 +15,7 @@ final class PlaceMapViewModel: ObservableObject {
     @Published var cameraPosition: MapCameraPosition = .automatic
     @Published var isShowingDetail: Bool = false
     @Published var selectedPlace: Place?
+    @Published var error: String?
     
     private let locationManager = CLLocationManager()
 
@@ -69,7 +70,7 @@ final class PlaceMapViewModel: ObservableObject {
                 self.places = fetchedPlaces
             }
         } catch {
-            print("Failed to load or seed places: \(error)")
+            self.error = error.localizedDescription
         }
     }
 }

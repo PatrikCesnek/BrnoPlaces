@@ -14,38 +14,47 @@ struct PlaceListView: View {
 
     var body: some View {
         VStack {
-            List {
-                Section(
-                    header: SortPickerView(sortOption: $viewModel.sortOption)
-                ) {
-                    ForEach(viewModel.filteredPlaces) { place in
-                        ListRowView(
-                            place: place,
-                            isFavorite: place.isFavorite,
-                            openDetailAction: { place in
-                                viewModel.selectPlace(place)
-                            },
-                            toggleFavoriteAction: { place in
-                                viewModel.toggleFavorite(for: place)
-                            }
-                        )
+            if let error = viewModel.error {
+                ErrorView(
+                    errorString: error,
+                    retryAction: {
+                        viewModel.loadPlaces(modelContext: modelContext)
                     }
-                    .onDelete { indexSet in
-                        viewModel.deletePlace(at: indexSet, modelContext: modelContext)
+                )
+            } else {
+                List {
+                    Section(
+                        header: SortPickerView(sortOption: $viewModel.sortOption)
+                    ) {
+                        ForEach(viewModel.filteredPlaces) { place in
+                            ListRowView(
+                                place: place,
+                                isFavorite: place.isFavorite,
+                                openDetailAction: { place in
+                                    viewModel.selectPlace(place)
+                                },
+                                toggleFavoriteAction: { place in
+                                    viewModel.toggleFavorite(for: place)
+                                }
+                            )
+                        }
+                        .onDelete { indexSet in
+                            viewModel.deletePlace(at: indexSet, modelContext: modelContext)
+                        }
                     }
                 }
-            }
-            .searchable(
-                text: $viewModel.searchText,
-                prompt: Constants.Strings.search
-            )
-            .navigationTitle(Constants.Strings.listTitle)
-            .onAppear {
-                viewModel.loadPlaces(modelContext: modelContext)
-            }
-            .fullScreenCover(isPresented: $viewModel.isShowingDetail) {
-                if let place = viewModel.selectedPlace {
-                    PlaceDetailView(place: place)
+                .searchable(
+                    text: $viewModel.searchText,
+                    prompt: Constants.Strings.search
+                )
+                .navigationTitle(Constants.Strings.listTitle)
+                .onAppear {
+                    viewModel.loadPlaces(modelContext: modelContext)
+                }
+                .fullScreenCover(isPresented: $viewModel.isShowingDetail) {
+                    if let place = viewModel.selectedPlace {
+                        PlaceDetailView(place: place)
+                    }
                 }
             }
         }

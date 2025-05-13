@@ -17,6 +17,7 @@ final class PlaceListViewModel: ObservableObject {
     @Published var isShowingDetail = false
     @Published var sortOption: SortOption = .closest
     @Published var isShowingFavourites: Bool = false
+    @Published var error: String?
     
     @Published var userLocation: CLLocationCoordinate2D?
     
@@ -55,7 +56,7 @@ final class PlaceListViewModel: ObservableObject {
                     self.places = fetchedPlaces
                 }
             } catch {
-                print("Failed to load or seed places: \(error)")
+                self.error = error.localizedDescription
             }
         }
     }
@@ -70,7 +71,7 @@ final class PlaceListViewModel: ObservableObject {
             try modelContext.save()
             places.remove(atOffsets: offsets)
         } catch {
-            print("Failed to delete place: \(error.localizedDescription)")
+            self.error = "Failed to delete place: \(error.localizedDescription)"
         }
     }
     
