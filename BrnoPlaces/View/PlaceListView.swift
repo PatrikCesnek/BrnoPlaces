@@ -50,22 +50,11 @@ struct PlaceListView: View {
             }
         }
         .toolbar{
-            Button(
-                action: {
-                    withAnimation {
-                        viewModel.isShowingFavourites.toggle()
-                    }
+            FavoriteButtonView(
+                showFavoritesAction: {
+                    viewModel.isShowingFavourites.toggle()
                 },
-                label: {
-                    Image(
-                        systemName: viewModel.isShowingFavourites
-                        ? Constants.Images.heartFill
-                        : Constants.Images.heart
-                    )
-                    .resizable()
-                    .frame(width: 32, height: 32)
-                    .bold()
-                }
+                isShowingFavourites: viewModel.isShowingFavourites
             )
         }
     }

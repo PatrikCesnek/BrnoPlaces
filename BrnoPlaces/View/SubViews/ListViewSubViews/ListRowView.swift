@@ -55,6 +55,7 @@ struct ListRowView: View {
                         ? Constants.Images.heartFill
                         : Constants.Images.heart
                     )
+                    .bold()
                 }
             )
         }
