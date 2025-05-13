@@ -56,6 +56,18 @@ struct PlaceListView: View {
                         PlaceDetailView(place: place)
                     }
                 }
+                .alert(
+                    Constants.Strings.errorTitle,
+                    isPresented: $viewModel.isShowingDeletionError,
+                    actions: {
+                        Button(Constants.Strings.ok) {
+                            viewModel.isShowingDeletionError.toggle()
+                        }
+                    },
+                    message: {
+                        Text(viewModel.deletionError ?? "")
+                    }
+                )
             }
         }
         .toolbar{

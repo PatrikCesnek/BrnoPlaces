@@ -23,6 +23,7 @@ struct Constants {
         static let sort = "Sort".localizedCapitalized
         static let errorTitle = "Ooops, something went wrong...".localizedCapitalized
         static let errorRetry = "Try Again".localizedCapitalized
+        static let ok = "OK".localizedUppercase
     }
     
     struct Images {

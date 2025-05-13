@@ -18,6 +18,8 @@ final class PlaceListViewModel: ObservableObject {
     @Published var sortOption: SortOption = .closest
     @Published var isShowingFavourites: Bool = false
     @Published var error: String?
+    @Published var deletionError: String?
+    @Published var isShowingDeletionError: Bool = false
     
     @Published var userLocation: CLLocationCoordinate2D?
     
@@ -71,7 +73,8 @@ final class PlaceListViewModel: ObservableObject {
             try modelContext.save()
             places.remove(atOffsets: offsets)
         } catch {
-            self.error = "Failed to delete place: \(error.localizedDescription)"
+            self.isShowingDeletionError = true
+            self.deletionError = "Failed to delete place: \(error.localizedDescription)"
         }
     }
     

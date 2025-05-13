@@ -1,6 +1,10 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "\"OK\"" : {
+      "extractionState" : "manual",
+      "shouldTranslate" : false
+    },
     "A - Z" : {
       "extractionState" : "manual",
       "shouldTranslate" : false
