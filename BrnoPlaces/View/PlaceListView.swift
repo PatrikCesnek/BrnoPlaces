@@ -19,21 +19,16 @@ struct PlaceListView: View {
                     header: SortPickerView(sortOption: $viewModel.sortOption)
                 ) {
                     ForEach(viewModel.filteredPlaces) { place in
-                        VStack(alignment: .leading) {
-                            Text(place.name)
-                                .font(.headline)
-                            if let address = place.address {
-                                Text(address)
-                                    .font(.subheadline)
-                                    .foregroundColor(.secondary)
-                            }
-                        }
-                        .contentShape(Rectangle())
-                        .onTapGesture {
-                            withAnimation {
+                        ListRowView(
+                            place: place,
+                            isFavorite: place.isFavorite,
+                            openDetailAction: { place in
                                 viewModel.selectPlace(place)
+                            },
+                            toggleFavoriteAction: { place in
+                                viewModel.toggleFavorite(for: place)
                             }
-                        }
+                        )
                     }
                     .onDelete { indexSet in
                         viewModel.deletePlace(at: indexSet, modelContext: modelContext)
@@ -67,6 +62,9 @@ struct PlaceListView: View {
                         ? Constants.Images.heartFill
                         : Constants.Images.heart
                     )
+                    .resizable()
+                    .frame(width: 32, height: 32)
+                    .bold()
                 }
             )
         }

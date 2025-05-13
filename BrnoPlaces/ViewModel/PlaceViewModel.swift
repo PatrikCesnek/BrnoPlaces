@@ -23,15 +23,18 @@ final class PlaceListViewModel: ObservableObject {
     var filteredPlaces: [Place] {
         let base = sortedPlaces()
 
-        guard !searchText.isEmpty else { return base }
+        let favoritesFiltered = isShowingFavourites
+            ? base.filter { $0.isFavorite }
+            : base
 
-        return base.filter { place in
+        guard !searchText.isEmpty else { return favoritesFiltered }
+
+        return favoritesFiltered.filter { place in
             place.name.localizedCaseInsensitiveContains(searchText) ||
             (place.address?.localizedCaseInsensitiveContains(searchText) ?? false) ||
             (place.placeDescription?.localizedCaseInsensitiveContains(searchText) ?? false)
         }
     }
-
 
     func loadPlaces(modelContext: ModelContext) {
         Task {
@@ -68,6 +71,12 @@ final class PlaceListViewModel: ObservableObject {
             places.remove(atOffsets: offsets)
         } catch {
             print("Failed to delete place: \(error.localizedDescription)")
+        }
+    }
+    
+    func toggleFavorite(for place: Place) {
+        if let index = places.firstIndex(where: { $0.id == place.id }) {
+            places[index].isFavorite.toggle()
         }
     }
     
