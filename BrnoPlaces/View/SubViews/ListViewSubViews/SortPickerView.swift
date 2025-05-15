@@ -19,10 +19,12 @@ struct SortPickerView: View {
             ForEach(SortOption.allCases) { option in
                 Text(option.label)
                     .tag(option)
+                    .accessibilityLabel(Constants.Strings.sortOption)
             }
             .frame(maxWidth: .infinity)
         }
         .pickerStyle(.segmented)
+        .accessibilityElement(children: .contain)
     }
 }
 

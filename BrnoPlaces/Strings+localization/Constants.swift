@@ -22,8 +22,18 @@ struct Constants {
         static let aToZ = "A - Z".localizedUppercase
         static let sort = "Sort".localizedCapitalized
         static let errorTitle = "Ooops, something went wrong...".localizedCapitalized
+        static let errorMessage = "Error message".localizedCapitalized
         static let errorRetry = "Try Again".localizedCapitalized
         static let ok = "OK".localizedUppercase
+        static let dismiss = "Dismiss".localizedCapitalized
+        static let placeImage = "Image of the place".localizedCapitalized
+        static let placeTitle = "Title of the place".localizedCapitalized
+        static let placeAddress = "Address of the place".localizedCapitalized
+        static let placeDescription = "Description of the place".localizedCapitalized
+        static let placeLink = "Link to the place's website".localizedCapitalized
+        static let navigateToPlace = "Navigate to place button".localizedCapitalized
+        static let toggleFavorite = "Toggle favorite".localizedCapitalized
+        static let sortOption = "Sort option".localizedCapitalized
     }
     
     struct Images {

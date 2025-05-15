@@ -33,8 +33,10 @@ struct ErrorView: View {
             Text(Constants.Strings.errorTitle)
                 .font(.title)
                 .multilineTextAlignment(.center)
+                .accessibilityLabel(Constants.Strings.errorTitle)
             
             Text(errorString)
+                .accessibilityLabel(Constants.Strings.errorMessage)
             
             Spacer()
             
@@ -45,7 +47,9 @@ struct ErrorView: View {
             .tint(.red)
             .frame(width: 250, height: 50)
             .padding(16)
+            .accessibilityLabel(Constants.Strings.errorRetry)
         }
+        .accessibilityElement(children: .contain)
     }
 }
 

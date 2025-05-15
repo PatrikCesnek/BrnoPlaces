@@ -28,6 +28,7 @@ struct PlaceDetailView: View {
                 )
                 .frame(height: 300)
                 .background(ignoresSafeAreaEdges: [.top, .horizontal])
+                .accessibilityLabel(Constants.Strings.map)
                 
                 HStack {
                     Spacer()
@@ -37,6 +38,7 @@ struct PlaceDetailView: View {
                             dismiss()
                         }
                     })
+                    .accessibilityLabel(Constants.Strings.dismiss)
                 }
                 .offset(y: -140)
                 .padding(8)
@@ -51,6 +53,7 @@ struct PlaceDetailView: View {
             .frame(height: 40)
             .shadow(radius: 8)
             .padding(.bottom, 16)
+            .accessibilityLabel(Constants.Strings.placeImage)
             
             PlaceDetailInfoView(
                 title: place.name,
@@ -66,6 +69,7 @@ struct PlaceDetailView: View {
                         title: Constants.Strings.moreInfo,
                         url: url
                     )
+                    .accessibilityLabel(Constants.Strings.placeLink)
                     
                     Spacer()
                 }
@@ -79,11 +83,13 @@ struct PlaceDetailView: View {
                         )
                     }
                 )
+                .accessibilityLabel(Constants.Strings.navigateToPlace)
             }
             .padding(.horizontal, 16)
             
             Spacer()
         }
+        .accessibilityElement(children: .combine)
     }
 }
 

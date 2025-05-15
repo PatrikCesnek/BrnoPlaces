@@ -49,6 +49,7 @@ struct PlaceMapView: View {
                     PlaceDetailView(place: place)
                 }
             }
+            .accessibilityHidden(true)
         }
     }
 }
