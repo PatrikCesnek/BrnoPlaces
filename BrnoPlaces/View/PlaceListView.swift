@@ -21,6 +21,7 @@ struct PlaceListView: View {
                         viewModel.loadPlaces(modelContext: modelContext)
                     }
                 )
+                .padding(.horizontal, 16)
             } else {
                 List {
                     Section(
@@ -71,12 +72,14 @@ struct PlaceListView: View {
             }
         }
         .toolbar{
-            FavoriteButtonView(
-                showFavoritesAction: {
-                    viewModel.isShowingFavourites.toggle()
-                },
-                isShowingFavourites: viewModel.isShowingFavourites
-            )
+            if viewModel.error == nil {
+                FavoriteButtonView(
+                    showFavoritesAction: {
+                        viewModel.isShowingFavourites.toggle()
+                    },
+                    isShowingFavourites: viewModel.isShowingFavourites
+                )
+            }
         }
     }
 }

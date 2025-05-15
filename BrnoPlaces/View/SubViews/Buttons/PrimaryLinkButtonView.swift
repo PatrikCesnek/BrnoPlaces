@@ -22,7 +22,6 @@ struct PrimaryLinkButtonView: View {
 }
 
 #Preview {
-    let url = URL(string: Mock.mockPlace.url ?? "")
     PrimaryLinkButtonView(
         title: Constants.Strings.moreInfo,
         url: Mock.safeURL
