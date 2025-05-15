@@ -8,10 +8,33 @@
 import Foundation
 
 struct Constants {
-    struct strings {
-        static let appName = "Brno Places"
-        static let name = "name"
-        static let unknown = "Unknown"
-        static let description = "description"
+    struct Strings {
+        static let appName = "Brno Places".localizedCapitalized
+        static let unknown = "Unknown".localizedCapitalized
+        static let list = "List".localizedCapitalized
+        static let map = "Map".localizedCapitalized
+        static let listTitle = "Places".localizedCapitalized
+        static let search = "Search".localizedCapitalized
+        static let moreInfo = "More Info".localizedCapitalized
+        static let addedOn = "Added on ".localizedCapitalized
+        static let navigate = "Navigate".localizedCapitalized
+        static let closest = "Closest".localizedCapitalized
+        static let aToZ = "A - Z".localizedUppercase
+        static let sort = "Sort".localizedCapitalized
+        static let errorTitle = "Ooops, something went wrong...".localizedCapitalized
+        static let errorRetry = "Try Again".localizedCapitalized
+        static let ok = "OK".localizedUppercase
+    }
+    
+    struct Images {
+        static let listImage = "list.bullet"
+        static let map = "map"
+        static let mapPin = "mappin.circle.fill"
+        static let backButton = "chevron.left"
+        static let dismissButton = "xmark"
+        static let emptyPhoto = "photo.circle.fill"
+        static let heart = "heart"
+        static let heartFill = "heart.fill"
+        static let gearXmark = "gear.badge.xmark"
     }
 }

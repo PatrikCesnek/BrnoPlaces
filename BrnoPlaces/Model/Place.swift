@@ -13,51 +13,45 @@ import MapKit
 final class Place: Identifiable {
     @Attribute(.unique) var id: UUID
     var name: String
-    var subtitle: String?
+    var placeDescription: String?
+    var address: String?
     var latitude: Double
     var longitude: Double
     var createdAt: Date
+    var imageURL: String?
+    var url: String?
+    var isFavorite: Bool = false
 
     init(
         id: UUID = UUID(),
-        name: String,
-        subtitle: String? = nil,
-        latitude: Double,
-        longitude: Double,
-        createdAt: Date = .now
+        name: String = "",
+        placeDescription: String? = nil,
+        address: String? = nil,
+        latitude: Double = 0,
+        longitude: Double = 0,
+        createdAt: Date = .now,
+        imageURL: String? = nil,
+        url: String? = nil,
+        isFavorite: Bool = false
     ) {
         self.id = id
         self.name = name
-        self.subtitle = subtitle
+        self.placeDescription = placeDescription
+        self.address = address
         self.latitude = latitude
         self.longitude = longitude
         self.createdAt = createdAt
+        self.imageURL = imageURL
+        self.url = url
+        self.isFavorite = isFavorite
     }
 
     var coordinate: CLLocationCoordinate2D {
         CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
     }
-}
-
-extension Place {
-    static func from(feature: MKGeoJSONFeature) -> Place? {
-        guard let point = feature.geometry.first as? MKPointAnnotation else {
-            return nil
-        }
-
-        guard let propsData = feature.properties,
-              let json = try? JSONSerialization.jsonObject(with: propsData) as? [String: Any] else {
-            return nil
-        }
-
-        let name = json[Constants.strings.name] as? String ?? Constants.strings.unknown
-        let subtitle = json[Constants.strings.description] as? String
-
-        return Place(
-            name: name,
-            subtitle: subtitle,
-            latitude: point.coordinate.latitude,
-            longitude: point.coordinate.longitude
-        )
+    
+    func distance(to coordinate: CLLocationCoordinate2D) -> CLLocationDistance {
+        CLLocation(latitude: latitude, longitude: longitude)
+            .distance(from: CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude))
     }
 }
