@@ -19,11 +19,13 @@ struct ContentView: View {
                 Label(Constants.Strings.list, systemImage: Constants.Images.listImage)
             }
             
-            NavigationStack {
-                PlaceMapView()
-            }
-            .tabItem {
-                Label(Constants.Strings.map, systemImage: Constants.Images.map)
+            if !UIAccessibility.isVoiceOverRunning {
+                NavigationStack {
+                    PlaceMapView()
+                }
+                .tabItem {
+                    Label(Constants.Strings.map, systemImage: Constants.Images.map)
+                }
             }
         }
     }

@@ -31,6 +31,7 @@ struct PlaceDetailInfoView: View {
                 Text(title)
                     .font(.title)
                     .fontWeight(.bold)
+                    .accessibilityLabel(Constants.Strings.placeTitle)
                 
                 Text(Constants.Strings.addedOn + "\(createdAt.formattedDate())")
                     .font(.caption2)
@@ -40,6 +41,7 @@ struct PlaceDetailInfoView: View {
                     Text(address)
                         .font(.caption)
                         .foregroundStyle(.secondary)
+                        .accessibilityLabel(Constants.Strings.placeAddress)
                 }
                 
                 if let text = text, !text.isEmpty {
@@ -47,10 +49,12 @@ struct PlaceDetailInfoView: View {
                         Text(text)
                             .font(.body)
                             .multilineTextAlignment(.leading)
+                            .accessibilityLabel(Constants.Strings.placeDescription)
                     }
                 }
             }
         }
+        .accessibilityElement(children: .contain)
     }
 }
 

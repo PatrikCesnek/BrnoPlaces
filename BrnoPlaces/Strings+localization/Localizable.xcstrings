@@ -1,10 +1,6 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "\"OK\"" : {
-      "extractionState" : "manual",
-      "shouldTranslate" : false
-    },
     "A - Z" : {
       "extractionState" : "manual",
       "shouldTranslate" : false
@@ -22,6 +18,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Pridané"
+          }
+        }
+      }
+    },
+    "Address of the place" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Adresa místa"
+          }
+        },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Adresa miesta"
           }
         }
       }
@@ -56,6 +69,91 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Najbližšie"
+          }
+        }
+      }
+    },
+    "Description of the place" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Popis místa"
+          }
+        },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Popis miesta"
+          }
+        }
+      }
+    },
+    "Dismiss" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zrušit"
+          }
+        },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zrušiť"
+          }
+        }
+      }
+    },
+    "Error message" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chybová zpráva"
+          }
+        },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chybová správa"
+          }
+        }
+      }
+    },
+    "Image of the place" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Obrázek místa"
+          }
+        },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Obrázok miesta"
+          }
+        }
+      }
+    },
+    "Link to the place's website" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Link na webstránku místa"
+          }
+        },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Link na webstránku miesta"
           }
         }
       }
@@ -128,6 +226,27 @@
         }
       }
     },
+    "Navigate to place button" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tlačítko navigovat na místo"
+          }
+        },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tlačítko navigovať na miesto"
+          }
+        }
+      }
+    },
+    "OK" : {
+      "extractionState" : "manual",
+      "shouldTranslate" : false
+    },
     "Ooops, something went wrong..." : {
       "extractionState" : "manual",
       "localizations" : {
@@ -192,6 +311,57 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Zoradiť"
+          }
+        }
+      }
+    },
+    "Sort option" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Třídit podle"
+          }
+        },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Triediť podľa"
+          }
+        }
+      }
+    },
+    "Title of the place" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Název místa"
+          }
+        },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Názov miesta"
+          }
+        }
+      }
+    },
+    "Toggle favorite" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Přepnout oblíbené"
+          }
+        },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Prepnúť obľúbené"
           }
         }
       }

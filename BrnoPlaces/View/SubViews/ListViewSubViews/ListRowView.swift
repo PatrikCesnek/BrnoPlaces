@@ -30,10 +30,12 @@ struct ListRowView: View {
             VStack(alignment: .leading) {
                 Text(place.name)
                     .font(.headline)
+                    .accessibilityLabel(Constants.Strings.placeTitle)
                 if let address = place.address {
                     Text(address)
                         .font(.subheadline)
                         .foregroundColor(.secondary)
+                        .accessibilityLabel(Constants.Strings.placeAddress)
                 }
             }
             .contentShape(Rectangle())
@@ -58,7 +60,9 @@ struct ListRowView: View {
                     .bold()
                 }
             )
+            .accessibilityLabel(Constants.Strings.toggleFavorite)
         }
+        .accessibilityElement(children: .contain)
     }
 }
 
